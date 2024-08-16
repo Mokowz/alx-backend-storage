@@ -21,6 +21,7 @@ def count_calls(method: Callable) -> Callable:
         return method(self, *args, **kwargs)
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     """Decorator"""
     key = method.__qualname__
@@ -35,6 +36,8 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush(o, str(res))
         return res
     return wrapper
+
+
 class Cache:
     "Store data in redis instance"
     def __init__(self):
